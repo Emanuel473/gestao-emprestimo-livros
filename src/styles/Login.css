@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+.login-container {
+  background-color: #000718;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  background-color: #1E293B;
+
+  width: 350px;
+  height: 380px;
+
+  border-radius: 20px;
+
+  padding: 30px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-container h1 {
+  color: white;
+}
+
+.login-container p {
+  color: white;
+}
+
+.login-card h2 {
+  color: white;
+}
+
+.login-card label {
+  color: white;
+}
+
+.login-container h1 {
+  color: white;
+
+  font-family: Inter, sans-serif;
+
+  font-size: 40px;
+
+  font-weight: 400;
+
+  margin-bottom: 5px;
+}
+
+.login-container p {
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+
+  color: #CBD5E1;
+
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+.login-input {
+  width: 245px;
+  height: 45px;
+
+  background-color: #334155;
+
+  border: none;
+
+  border-radius: 10px;
+
+  margin-bottom: 20px;
+
+  padding-left: 12px;
+
+  color: white;
+}
+
+.login-button {
+  width: 158px;
+  height: 37px;
+
+  background-color: #3B82F6;
+
+  border: none;
+
+  border-radius: 12px;
+
+  color: white;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  margin-top: 10px;
+}
+
+.login-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.logo {
+  width: 450px;
+  height: 150px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.login-card label {
+  width: 245px;
+  text-align: left;
+  color: white;
+  margin-bottom: 5px;
+}
