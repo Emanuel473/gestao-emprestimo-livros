@@ -1,6 +1,6 @@
 .book-card {
   width: 220px;
-  height: 340px;
+  min-height: 380px;
 
   background-color: #243247;
 
@@ -11,7 +11,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
 
   box-sizing: border-box;
 }
@@ -36,6 +35,13 @@
   text-align: center;
 
   margin: 0;
+  margin-top: 5px;
+
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .author {
@@ -45,7 +51,13 @@
 
   text-align: center;
 
-  margin-top: 4px;
+  height: 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 5px;
   margin-bottom: 8px;
 }
 

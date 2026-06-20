@@ -15,15 +15,17 @@ function BookCard({ capa, titulo, autor, status, botao }) {
         {autor}
       </p>
 
-      <p
-        className={`status ${
-          status === "Disponível"
-            ? "available"
-            : "unavailable"
-        }`}
-      >
-        {status}
-      </p>
+       <p
+          className={`status ${
+            status === "disponivel"
+              ? "available"
+              : "unavailable"
+          }`}
+        >
+          {status === "disponivel"
+            ? "Disponível"
+            : "Indisponível"}
+        </p>
 
     <button
         className={
