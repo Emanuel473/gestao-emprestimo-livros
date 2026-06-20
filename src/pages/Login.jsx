@@ -1,6 +1,8 @@
 import "../styles/Login.css"
 import logo from '../assets/logo.jpeg'
+import { useNavigate } from "react-router-dom";
 function Login() {
+  const navigate = useNavigate();
   return (
     <div className="login-container">
       <img src={logo} alt="Prometheus" className="logo" />
@@ -16,7 +18,10 @@ function Login() {
         <label>Senha</label>
         <input className="login-input" type="password" />
 
-        <button className="login-button">
+        <button
+          className="login-button"
+          onClick={() => navigate("/dashboard")}
+        >
           Entrar
         </button>
       </div>
