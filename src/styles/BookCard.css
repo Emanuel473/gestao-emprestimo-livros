@@ -1,0 +1,104 @@
+.book-card {
+  width: 220px;
+  height: 340px;
+
+  background-color: #243247;
+
+  border-radius: 18px;
+
+  padding: 18px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  box-sizing: border-box;
+}
+
+.book-cover {
+  width: 120px;
+  height: 170px;
+
+  object-fit: cover;
+
+  border-radius: 8px;
+
+  margin-bottom: 12px;
+}
+
+.book-card h3 {
+  color: white;
+
+  font-size: 20px;
+  font-weight: 600;
+
+  text-align: center;
+
+  margin: 0;
+}
+
+.author {
+  color: #cbd5e1;
+
+  font-size: 14px;
+
+  text-align: center;
+
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.status {
+  font-size: 15px;
+  font-weight: 600;
+
+  margin-top: 4px;
+  margin-bottom: 10px;
+}
+
+.available {
+  color: #22c55e;
+}
+
+.unavailable {
+  color: #ef4444;
+}
+
+.borrow-button {
+  width: 140px;
+  height: 42px;
+
+  border: none;
+  border-radius: 12px;
+
+  background-color: #22c55e;
+
+  color: white;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  margin-top: 0;
+}
+
+.return-button {
+  width: 140px;
+  height: 42px;
+
+  border: none;
+  border-radius: 12px;
+
+  background-color: #ef4444;
+
+  color: white;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  margin-top: 0;
+}
