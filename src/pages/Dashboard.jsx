@@ -39,16 +39,16 @@ function Dashboard() {
             capa={livro1984}
             titulo="1984"
             autor="George Orwell"
-            status="Indisponível"
-            botao="Devolver"
+            status="Disponível"
+            botao="Emprestar"
           />
 
           <BookCard
             capa={ateneu}
             titulo="O Ateneu"
             autor="Raul Pompeia"
-            status="Indisponível"
-            botao="Devolver"
+            status="Disponível"
+            botao="Emprestar"
           />
 
         </div>
