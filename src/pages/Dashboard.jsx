@@ -10,6 +10,7 @@ function Dashboard() {
   const [livros, setLivros] = useState([]);
   // Estado para controlar o carregamento (opcional, mas muito bom para UX)
   const [carregando, setCarregando] = useState(true);
+  const [pesquisa, setPesquisa] = useState("");
 
   const API_URL = "https://api-emprestimo-livros.onrender.com";
 
@@ -38,12 +39,21 @@ function Dashboard() {
   const disponiveis = livros.filter((l) => l.status === "disponivel").length;
   const emprestados = livros.filter((l) => l.status === "emprestado").length;
 
+  const livrosFiltrados = livros.filter((livro) =>
+    livro.titulo
+      .toLowerCase()
+      .includes(pesquisa.toLowerCase())
+  );
+
   return (
     <div className="dashboard-container">
       <Sidebar />
 
       <main className="dashboard-content">
-        <Header />
+        <Header
+          pesquisa={pesquisa}
+          setPesquisa={setPesquisa}
+        />
 
         {/* Agora os cards exibem os números reais vindos do banco de dados */}
         <div className="stats-container">
@@ -58,7 +68,7 @@ function Dashboard() {
           <p className="loading-text">Carregando livros da biblioteca...</p>
         ) : (
           <div className="recent-books-container">
-            {livros.map((livro) => (
+            {livrosFiltrados.map((livro) => (
               <BookCard
                 key={livro.id} // O React precisa de uma chave única para listas
                 capa={livro.foto_url} // Usa o link do Supabase Storage

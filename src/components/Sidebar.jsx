@@ -9,11 +9,12 @@ import {
   MdSettings
 } from "react-icons/md";
 
+import { Link } from "react-router-dom";
+
 function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-logo">
-
         <img
           src={logo}
           alt="Logo Prometheus"
@@ -21,35 +22,34 @@ function Sidebar() {
         />
 
         <h2>PROMETHEUS</h2>
-
       </div>
 
-        <nav className="sidebar-menu">
-          <a href="#">
-            <MdDashboard />
-            Dashboard
-          </a>
+      <nav className="sidebar-menu">
+        <Link to="/dashboard">
+          <MdDashboard />
+          Dashboard
+        </Link>
 
-          <a href="#">
-            <MdMenuBook />
-            Livros
-          </a>
+        <Link to="/livros">
+          <MdMenuBook />
+          Livros
+        </Link>
 
-          <a href="#">
-            <MdPeople />
-            Usuários
-          </a>
+        <a href="#">
+          <MdPeople />
+          Usuários
+        </a>
 
-          <a href="#">
-            <MdSwapHoriz />
-            Empréstimos
-          </a>
+        <a href="#">
+          <MdSwapHoriz />
+          Empréstimos
+        </a>
 
-          <a href="#">
-            <MdSettings />
-            Configurações
-          </a>
-        </nav>
+        <a href="#">
+          <MdSettings />
+          Configurações
+        </a>
+      </nav>
     </aside>
   );
 }

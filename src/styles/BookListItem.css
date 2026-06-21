@@ -1,0 +1,93 @@
+.book-list-item {
+  width: 900px;
+  height: 110px;
+
+  background-color: #1E293B;
+
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 20px;
+
+  box-sizing: border-box;
+}
+
+.book-list-cover {
+  width: 60px;
+  height: 85px;
+
+  object-fit: cover;
+
+  border-radius: 4px;
+}
+
+.book-list-info {
+  flex: 1;
+
+  margin-left: 25px;
+}
+
+.book-list-info h3 {
+  color: white;
+
+  margin: 0;
+
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.book-list-info p {
+  margin-top: 5px;
+
+  color: #D1D5DB;
+
+  font-size: 14px;
+}
+
+.status-disponivel {
+  color: #22C55E;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.status-emprestado {
+  color: #EF4444;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.btn-emprestar {
+  width: 120px;
+  height: 40px;
+
+  background-color: #2563EB;
+
+  color: white;
+
+  border: none;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.btn-devolver {
+  width: 120px;
+  height: 40px;
+
+  background-color: #EF4444;
+
+  color: white;
+
+  border: none;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+}

@@ -1,7 +1,7 @@
 import "../styles/Header.css";
 import { MdSearch } from "react-icons/md";
 
-function Header() {
+function Header({ pesquisa, setPesquisa }) {
   return (
     <div className="header">
       <div className="search-container">
@@ -10,6 +10,8 @@ function Header() {
         <input
           type="text"
           placeholder="Pesquisar livros..."
+          value={pesquisa}
+          onChange={(e) => setPesquisa(e.target.value)}
         />
       </div>
     </div>
