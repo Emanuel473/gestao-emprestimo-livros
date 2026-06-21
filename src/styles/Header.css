@@ -1,46 +1,88 @@
 .header {
-  padding-top: 35px;
-  padding-left: 35px;
+  display: flex;
+  justify-content: space-between; /* Empurra a busca pra esquerda e o perfil pra direita */
+  align-items: center;
+  width: 100%;
+  padding: 15px 30px;
+  background-color: #020617; /* Ajuste para a cor de fundo do seu dashboard se necessário */
+  box-sizing: border-box;
 }
 
+/* Container da Busca */
 .search-container {
-  position: relative;
-
-  width: 737px;
+  display: flex;
+  align-items: center;
+  background-color: #1c2541;
+  border-radius: 8px;
+  padding: 8px 14px;
+  width: 100%;
+  max-width: 450px; /* Limita o tamanho máximo da barra de pesquisa */
 }
 
 .search-icon {
-  position: absolute;
-
-  left: 15px;
-  top: 50%;
-
-  transform: translateY(-50%);
-
-  font-size: 22px;
-
-  color: #94a3b8;
+  color: #8da2bb;
+  font-size: 1.3rem;
+  margin-right: 8px;
 }
 
 .search-container input {
-  width: 100%;
-  height: 44px;
-
-  background-color: #1e293b;
-
+  background: none;
   border: none;
-  border-radius: 10px;
-
-  color: white;
-
-  padding-left: 50px;
-
-  font-family: "Inter", sans-serif;
-  font-size: 14px;
-
   outline: none;
+  color: #ffffff;
+  font-size: 1rem;
+  width: 100%;
 }
 
 .search-container input::placeholder {
-  color: #94a3b8;
+  color: #637ba1;
+}
+
+/* Bloco do Perfil (Lado Direito) */
+.header-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espaço entre o nome e o botão de logout */
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  text-align: right; /* Alinha o texto para a direita */
+}
+
+.welcome-text {
+  color: #8da2bb;
+  font-size: 0.8rem;
+}
+
+.user-name {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Botão de Logout */
+.logout-button {
+  background: none;
+  border: none;
+  color: #8da2bb;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.logout-button:hover {
+  color: #ff4d4d; /* Fica vermelho suave ao passar o mouse */
+  background-color: rgba(
+    255,
+    77,
+    77,
+    0.1
+  ); /* Um leve fundo vermelho de destaque */
 }
