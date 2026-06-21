@@ -8,31 +8,117 @@ import "../styles/Dashboard.css";
 function Dashboard() {
   // Estado para armazenar os livros vindos da API
   const [livros, setLivros] = useState([]);
-  // Estado para controlar o carregamento (opcional, mas muito bom para UX)
+  // Estado para controlar o carregamento
   const [carregando, setCarregando] = useState(true);
   const [pesquisa, setPesquisa] = useState("");
 
   const API_URL = "https://api-emprestimo-livros.onrender.com";
 
-  useEffect(() => {
-    // Função assíncrona para buscar os dados da API
-    async function buscarLivros() {
-      try {
-        const resposta = await fetch(`${API_URL}/livros`);
-        if (!resposta.ok) {
-          throw new Error("Erro ao buscar os livros da API");
-        }
-        const dados = await resposta.json();
-        setLivros(dados); // Salva os livros no estado
-      } catch (erro) {
-        console.error("Erro na requisição:", erro);
-      } finally {
-        setCarregando(false); // Desativa o indicador de carregando
+  // Pega o ID do usuário que está logado no navegador para passar para os cards
+  const usuarioLogado = localStorage.getItem("usuario");
+  const idUsuarioLogado = usuarioLogado ? JSON.parse(usuarioLogado).id : null;
+
+  // Função isolada para buscar livros
+  async function buscarLivros() {
+    try {
+      setCarregando(true);
+      const resposta = await fetch(`${API_URL}/livros`);
+      if (!resposta.ok) {
+        throw new Error("Erro ao buscar os livros da API");
       }
+      const dados = await resposta.json();
+      setLivros(dados); // Salva os livros no estado
+    } catch (erro) {
+      console.error("Erro na requisição:", erro);
+    } finally {
+      setCarregando(false); // Desativa o indicador de carregando
+    }
+  }
+
+  useEffect(() => {
+    buscarLivros();
+  }, []); // Executa apenas ao carregar o componente
+
+  // FUNÇÃO: Faz a requisição PUT para pegar emprestado
+  const handleEmprestar = async (livro) => {
+    if (!idUsuarioLogado) {
+      alert("Sessão inválida ou expirada. Por favor, refaça o login.");
+      return;
     }
 
-    buscarLivros();
-  }, []); // Array vazio significa que roda apenas uma vez quando a tela carrega
+    // Caixinha de confirmação antes de efetivar
+    const confirmar = window.confirm(
+      `Você tem certeza que deseja pegar o livro "${livro.titulo}" emprestado?`,
+    );
+    if (!confirmar) return;
+
+    try {
+      const resposta = await fetch(`${API_URL}/livros/${livro.id}/emprestar`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ usuario_id: idUsuarioLogado }),
+      });
+
+      const dados = await resposta.json();
+
+      if (!resposta.ok) {
+        throw new Error(dados.error || "Erro ao realizar empréstimo.");
+      }
+
+      // Atualiza a lista e os contadores na tela dinamicamente
+      buscarLivros();
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  // FUNÇÃO: Faz a requisição PUT para devolver o livro
+  const handleDevolver = async (livro) => {
+    if (!idUsuarioLogado) {
+      alert("Sessão inválida ou expirada. Por favor, refaça o login.");
+      return;
+    }
+
+    // TRAVA: Verifica se quem está logado é o mesmo que pegou o livro
+    if (
+      livro.usuario_emprestimo &&
+      livro.usuario_emprestimo !== idUsuarioLogado
+    ) {
+      alert(
+        "Apenas o usuário que pegou este livro emprestado pode realizar a devolução.",
+      );
+      return;
+    }
+
+    // Caixinha de confirmação antes de efetivar
+    const confirmar = window.confirm(
+      `Você tem certeza que deseja devolver o livro "${livro.titulo}"?`,
+    );
+    if (!confirmar) return;
+
+    try {
+      const resposta = await fetch(`${API_URL}/livros/${livro.id}/devolver`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ usuario_id: idUsuarioLogado }),
+      });
+
+      const dados = await resposta.json();
+
+      if (!resposta.ok) {
+        throw new Error(dados.error || "Erro ao realizar devolução.");
+      }
+
+      // Atualiza a lista e os contadores na tela dinamicamente
+      buscarLivros();
+    } catch (err) {
+      alert(err.message);
+    }
+  };
 
   // Funções para calcular os valores dos cards dinamicamente baseados no banco
   const totalLivros = livros.length;
@@ -40,9 +126,7 @@ function Dashboard() {
   const emprestados = livros.filter((l) => l.status === "emprestado").length;
 
   const livrosFiltrados = livros.filter((livro) =>
-    livro.titulo
-      .toLowerCase()
-      .includes(pesquisa.toLowerCase())
+    livro.titulo.toLowerCase().includes(pesquisa.toLowerCase()),
   );
 
   return (
@@ -50,12 +134,8 @@ function Dashboard() {
       <Sidebar />
 
       <main className="dashboard-content">
-        <Header
-          pesquisa={pesquisa}
-          setPesquisa={setPesquisa}
-        />
+        <Header pesquisa={pesquisa} setPesquisa={setPesquisa} />
 
-        {/* Agora os cards exibem os números reais vindos do banco de dados */}
         <div className="stats-container">
           <StatCard titulo="Livros" valor={totalLivros.toString()} />
           <StatCard titulo="Disponíveis" valor={disponiveis.toString()} />
@@ -70,17 +150,29 @@ function Dashboard() {
           <div className="recent-books-container">
             {livrosFiltrados.map((livro) => (
               <BookCard
-                key={livro.id} // O React precisa de uma chave única para listas
-                capa={livro.foto_url} // Usa o link do Supabase Storage
+                key={livro.id}
+                capa={livro.foto_url}
                 titulo={livro.titulo}
                 autor={livro.autor || "Autor desconhecido"}
                 status={livro.status}
                 botao={livro.status === "disponivel" ? "Emprestar" : "Devolver"}
+                nomeEmprestimo={livro.nome_emprestimo}
+                idUsuarioEmprestimo={
+                  livro.usuario_emprestimo
+                } /* Mapeia ID do banco */
+                idUsuarioLogado={idUsuarioLogado} /* Mapeia ID da sessão */
+                onAcaoClick={
+                  livro.status === "disponivel"
+                    ? () => handleEmprestar(livro)
+                    : () => handleDevolver(livro)
+                }
               />
             ))}
 
-            {livros.length === 0 && (
-              <p>Nenhum livro encontrado no banco de dados.</p>
+            {livrosFiltrados.length === 0 && (
+              <p style={{ color: "#fff", marginTop: "20px" }}>
+                Nenhum livro encontrado.
+              </p>
             )}
           </div>
         )}
