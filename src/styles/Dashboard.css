@@ -1,0 +1,53 @@
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.dashboard-content {
+  flex: 1;
+
+  background-color: #020617;
+
+  color: white;
+}
+
+.stats-container {
+  display: flex;
+
+  justify-content: space-between;
+
+  padding: 35px;
+
+  gap: 30px;
+}
+
+.recent-title {
+  margin-left: 35px;
+  margin-top: 40px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+
+  color: white;
+}
+
+.recent-books-container {
+  margin-left: 35px;
+  margin-top: 20px;
+
+  width: calc(100% - 70px);
+  min-height: 380px;
+
+  background-color: #1e293b;
+
+  border-radius: 20px;
+
+  padding: 30px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

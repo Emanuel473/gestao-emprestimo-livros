@@ -1,131 +1,153 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
+/* Container principal centralizado */
 .login-container {
-  background-color: #000718;
-  min-height: 100vh;
-
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-}
-
-.login-card {
-  background-color: #1E293B;
-
-  width: 350px;
-  height: 380px;
-
-  border-radius: 20px;
-
-  padding: 30px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.login-container h1 {
-  color: white;
-}
-
-.login-container p {
-  color: white;
-}
-
-.login-card h2 {
-  color: white;
-}
-
-.login-card label {
-  color: white;
-}
-
-.login-container h1 {
-  color: white;
-
-  font-family: Inter, sans-serif;
-
-  font-size: 40px;
-
-  font-weight: 400;
-
-  margin-bottom: 5px;
-}
-
-.login-container p {
-  font-family: Inter, sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-
-  color: #CBD5E1;
-
-  margin-top: 0;
-  margin-bottom: 30px;
-}
-
-.login-input {
-  width: 245px;
-  height: 45px;
-
-  background-color: #334155;
-
-  border: none;
-
-  border-radius: 10px;
-
-  margin-bottom: 20px;
-
-  padding-left: 12px;
-
-  color: white;
-}
-
-.login-button {
-  width: 158px;
-  height: 37px;
-
-  background-color: #3B82F6;
-
-  border: none;
-
-  border-radius: 12px;
-
-  color: white;
-
-  font-weight: bold;
-
-  cursor: pointer;
-
-  margin-top: 10px;
-}
-
-.login-title {
-  font-family: 'Inter', sans-serif;
-  font-size: 30px;
-  font-weight: 400;
-  color: #FFFFFF;
-  text-align: center;
-  margin-bottom: 25px;
+  min-height: 100vh;
+  background-color: #0b1329;
+  padding: 20px;
 }
 
 .logo {
-  width: 450px;
-  height: 150px;
-  object-fit: contain;
+  width: 98px;
+  height: 90px;
+  border-radius: 50%;
   margin-bottom: 15px;
 }
 
-.login-card label {
-  width: 245px;
-  text-align: left;
-  color: white;
+.login-container h1 {
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-weight: 400;
   margin-bottom: 5px;
+  letter-spacing: 2px;
+}
+
+.login-container p {
+  color: #8da2bb;
+  font-size: 1rem;
+  margin: 0 0 25px 0;
+}
+
+/* O CARD - Mudado para height: auto para crescer organicamente */
+.login-card {
+  background-color: #1c2541;
+  width: 100%;
+  max-width: 400px;
+  padding: 35px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+.login-title {
+  color: #ffffff;
+  text-align: center;
+  font-size: 1.8rem;
+  margin-top: 0;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+}
+
+/* Mensagem de Erro estilizada */
+.error-message {
+  color: #ff4d4d;
+  font-size: 14px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Formulário e elementos internos estruturados */
+.login-card form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.login-card label {
+  color: #ffffff;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.login-input {
+  background-color: #2a3454;
+  border: 1px solid #3b4b75;
+  border-radius: 8px;
+  color: #ffffff;
+  padding: 12px 16px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+.login-input:focus {
+  border-color: #3b82f6;
+}
+
+.login-input::placeholder {
+  color: #637ba1;
+}
+
+/* Botão de envio */
+.login-button {
+  background-color: #3b82f6;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.login-button:hover {
+  background-color: #2563eb;
+}
+
+.login-button:disabled {
+  background-color: #1d4ed8;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Container de alternar modo no rodapé do card */
+.toggle-mode-container {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.toggle-mode-container p {
+  color: #ffffff !important;
+  margin: 0;
+}
+
+.toggle-mode-container span {
+  color: #3b82f6;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.toggle-mode-container span:hover {
+  text-decoration: underline;
 }

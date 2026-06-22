@@ -1,0 +1,48 @@
+.livros-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.livros-content {
+  flex: 1;
+  background: #020617;
+  color: white;
+}
+
+.livros-title {
+  width: 1300px;
+
+  margin: 10px auto;
+
+  color: white;
+
+  font-size: 28px;
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+}
+
+.livros-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  width: 1000px;
+
+  margin: 0 auto;
+
+  margin-top: 20px;
+}
+
+.back-button {
+  color: white;
+
+  text-decoration: none;
+
+  margin-right: 10px;
+
+  
+}
+
+.back-button:hover {
+  color: #3B82F6;
+}
