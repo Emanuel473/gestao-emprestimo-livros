@@ -1,8 +1,8 @@
-import { useNavigate } from "react-router-dom"; // Importa o hook de navegação
+import { useNavigate } from "react-router-dom";
 import "../styles/BookListItem.css";
 
 function BookListItem({
-  id, // <-- Recebe o ID vindo do loop do pai
+  id,
   capa,
   titulo,
   autor,
@@ -13,23 +13,14 @@ function BookListItem({
 }) {
   const navigate = useNavigate();
 
-  // Função disparada ao clicar na imagem da capa
   const handleIrParaDetalhes = () => {
-    // Altere a rota abaixo caso a URL configurada no seu App.jsx seja diferente (ex: /detalhes/:id)
     navigate(`/livros/${id}`);
   };
 
   return (
-    <div className="book-list-item">
-      {/* Adicionado o evento onClick e um estilo de cursor para indicar que é clicável */}
-      <img
-        src={capa}
-        alt={titulo}
-        className="book-list-cover"
-        onClick={handleIrParaDetalhes}
-        style={{ cursor: "pointer" }}
-        title="Clique para ver os detalhes"
-      />
+    /* O CARD INTEIRO AGORA REDIRECIONA PARA OS DETALHES */
+    <div className="book-list-item" onClick={handleIrParaDetalhes}>
+      <img src={capa} alt={titulo} className="book-list-cover" />
 
       <div className="book-list-info">
         <h3>{titulo}</h3>
@@ -43,7 +34,6 @@ function BookListItem({
           {status === "disponivel" ? "Disponível" : "Emprestado"}
         </span>
 
-        {/* Mostra o nome completo de quem pegou o livro ao lado do status */}
         {status === "emprestado" && nomeEmprestimo && (
           <span
             className="borrowed-user-text"
@@ -60,10 +50,12 @@ function BookListItem({
         )}
       </div>
 
-      {/* Botão conectado com os manipuladores e estados do pai */}
       <button
         className={status === "disponivel" ? "btn-emprestar" : "btn-devolver"}
-        onClick={onAcaoClick}
+        onClick={(e) => {
+          e.stopPropagation(); // <-- IMPEDE QUE O CLIQUE NO BOTÃO ABRA A TELA DE DETALHES
+          onAcaoClick();
+        }}
       >
         {botao}
       </button>

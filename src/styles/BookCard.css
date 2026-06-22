@@ -1,6 +1,6 @@
 .book-card {
   width: 220px;
-  height: 410px;
+  height: 450px; /* Definimos uma altura fixa segura para todos os cards */
 
   background-color: #243247;
   border-radius: 18px;
@@ -11,7 +11,18 @@
   align-items: center;
   box-sizing: border-box;
 
-  justify-content: flex-start;
+  /* DISTRIBUIÇÃO INTELIGENTE: O Flexbox calcula sozinho os espaços vazios */
+  justify-content: space-between;
+
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .book-cover {
@@ -19,17 +30,18 @@
   height: 170px;
   object-fit: cover;
   border-radius: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 5px; /* Reduzido para dar respiro vertical */
 }
 
+/* Criamos um container para as informações textuais ficarem agrupadas 
+   e não disputarem espaço sozinhas com o botão */
 .book-card h3 {
   color: white;
-  font-size: 20px;
+  font-size: 16px; /* Reduzido levemente para evitar 3 quebras de linha */
   font-weight: 600;
   text-align: center;
   margin: 0;
-  margin-top: 5px;
-  height: 60px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,44 +49,48 @@
 
 .author {
   color: #cbd5e1;
-  font-size: 14px;
+  font-size: 13px;
   text-align: center;
-  height: 35px;
+  height: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 5px;
-  margin-bottom: 8px;
+  margin: 2px 0;
 }
 
 .status {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
-  margin-top: 4px;
-  margin-bottom: 5px; /* Reduzido levemente para dar margem ao texto */
+  margin: 2px 0;
 }
 
-/* Nova classe para garantir consistência no espaço do texto de empréstimo */
+/* Espaço fixo reservado para o texto do empréstimo */
 .borrowed-by {
-  height: 20px; /* Deixa um espaço reservado fixo para o texto */
-  margin-bottom: 10px;
+  font-size: 0.82rem;
+  color: #8da2bb;
+  font-style: italic;
   text-align: center;
+  margin: 0;
+  height: 34px; /* Deixa o espaço reservado mesmo nos cards Disponíveis */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.2;
 }
 
-/* BOTÕES ATUALIZADOS */
+/* BOTÕES ALINHADOS NO RODAPÉ */
 .borrow-button,
 .return-button {
   width: 140px;
-  height: 42px;
+  height: 40px;
   border: none;
   border-radius: 12px;
   color: white;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-
-  /* ISSO JOGA OS BOTÕES SEMPRE PARA O RODAPÉ DO CARD */
-  margin-top: auto;
+  flex-shrink: 0; /* Impede o botão de ser achatado quando faltar espaço */
+  margin-top: 5px;
 }
 
 .borrow-button {

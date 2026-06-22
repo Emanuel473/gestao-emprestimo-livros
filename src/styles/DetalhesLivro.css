@@ -3,22 +3,13 @@
 }
 
 html,
-body {
+body,
+#root {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
-  font-family:
-    "Segoe UI",
-    "Inter",
-    system-ui,
-    -apple-system,
-    sans-serif;
-}
-
-#root {
-  width: 100%;
   min-height: 100vh;
+  font-family: "Segoe UI", "Inter", system-ui, sans-serif;
 }
 
 .app {
@@ -96,10 +87,6 @@ body {
   font-weight: 600;
 }
 
-.nav-icon {
-  flex-shrink: 0;
-}
-
 /* ============ Main content ============ */
 .main {
   flex: 1;
@@ -124,28 +111,26 @@ body {
   color: #ffffff;
 }
 
-.back-arrow {
-  font-size: 16px;
-}
-
+/* Aumentado de 320px para 380px para dar destaque à capa */
 .content-grid {
   display: grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 380px 1fr;
   gap: 40px;
   align-items: start;
 }
 
 /* ============ Capa do livro ============ */
 .cover-wrapper {
-  border-radius: 6px;
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .book-cover {
   width: 100%;
+  height: auto; /* Remove o aspecto quadrado, preservando a proporção real do livro */
+  object-fit: contain;
   display: block;
-  border-radius: 6px;
 }
 
 /* ============ Informações do livro ============ */
@@ -155,26 +140,42 @@ body {
   gap: 4px;
 }
 
-.badge-available {
+.badge-available,
+.badge-unavailable {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   align-self: flex-start;
   padding: 6px 14px;
-  border: 1px solid #2e7d4f;
   border-radius: 999px;
-  background: rgba(46, 125, 79, 0.12);
-  color: #4ade80;
   font-size: 13px;
   font-weight: 600;
   margin-bottom: 16px;
+}
+
+.badge-available {
+  border: 1px solid #2e7d4f;
+  background: rgba(46, 125, 79, 0.12);
+  color: #4ade80;
+}
+
+.badge-unavailable {
+  border: 1px solid #7d2e2e;
+  background: rgba(125, 46, 46, 0.12);
+  color: #ef4444;
 }
 
 .badge-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
+}
+
+.badge-available .badge-dot {
   background: #4ade80;
+}
+.badge-unavailable .badge-dot {
+  background: #ef4444;
 }
 
 .book-title {
@@ -251,13 +252,7 @@ body {
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition:
-    background 0.15s ease,
-    opacity 0.15s ease;
-}
-
-.btn-icon {
-  font-size: 16px;
+  transition: background 0.15s ease;
 }
 
 .btn--primary {
@@ -311,10 +306,101 @@ body {
 .info-label {
   color: #8a90a8;
 }
-
 .info-value {
   color: #e6e8ef;
   font-weight: 500;
+}
+
+/* ============ Modais Customizados ============ */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-card {
+  background-color: #11162a;
+  border: 1px solid #1f2540;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 420px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-card h3 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  margin: 0 0 10px;
+}
+.modal-subtitle {
+  color: #aab0c5;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+.modal-card label {
+  color: #ffffff;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.modal-input {
+  background-color: #1a2038;
+  border: 1px solid #232a45;
+  border-radius: 8px;
+  color: #ffffff;
+  padding: 12px 16px;
+  font-size: 1rem;
+  margin-bottom: 25px;
+  outline: none;
+  width: 100%;
+}
+
+.modal-input:focus {
+  border-color: #2563eb;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.modal-cancel-btn {
+  background: none;
+  border: 1px solid #232a45;
+  color: #aab0c5;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.modal-cancel-btn:hover {
+  background-color: rgba(170, 176, 197, 0.1);
+}
+
+.modal-confirm-btn {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.modal-confirm-btn:hover {
+  background-color: #1d4fd1;
 }
 
 /* ============ Responsivo ============ */
@@ -322,11 +408,9 @@ body {
   .content-grid {
     grid-template-columns: 1fr;
   }
-
   .cover-wrapper {
     max-width: 280px;
   }
-
   .info-grid {
     grid-template-columns: 1fr;
   }
@@ -336,18 +420,15 @@ body {
   .app {
     flex-direction: column;
   }
-
   .sidebar {
     width: 100%;
     flex-direction: row;
     overflow-x: auto;
     align-items: center;
   }
-
   .nav {
     flex-direction: row;
   }
-
   .main {
     padding: 20px;
   }

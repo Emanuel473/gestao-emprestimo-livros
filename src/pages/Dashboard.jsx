@@ -142,6 +142,7 @@ function Dashboard() {
             {livrosFiltrados.map((livro) => (
               <BookCard
                 key={livro.id}
+                id={livro.id} // <-- ADICIONE ESSA LINHA PARA FAZER O REDIRECIONAMENTO FUNCIONAR
                 capa={livro.foto_url}
                 titulo={livro.titulo}
                 autor={livro.autor || "Autor desconhecido"}
