@@ -39,10 +39,114 @@
   text-decoration: none;
 
   margin-right: 10px;
-
-  
 }
 
 .back-button:hover {
-  color: #3B82F6;
+  color: #3b82f6;
+}
+
+/* ============ Estilização do Modal Customizado ============ */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-card {
+  background-color: #1c2541; /* Mantém a paleta escura do login e do dashboard */
+  border-radius: 16px;
+  width: 100%;
+  max-width: 420px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-card h3 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-family: "Inter", sans-serif;
+}
+
+.modal-subtitle {
+  color: #8da2bb;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  font-family: "Inter", sans-serif;
+}
+
+.modal-card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-card label {
+  color: #ffffff;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  text-align: left;
+  font-family: "Inter", sans-serif;
+}
+
+.modal-input {
+  background-color: #2a3454;
+  border: 1px solid #3b4b75;
+  border-radius: 8px;
+  color: #ffffff;
+  padding: 12px 16px;
+  font-size: 1rem;
+  margin-bottom: 25px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.modal-input:focus {
+  border-color: #3b82f6;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.modal-cancel-btn {
+  background: none;
+  border: 1px solid #3b4b75;
+  color: #8da2bb;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.modal-cancel-btn:hover {
+  background-color: rgba(141, 162, 187, 0.1);
+}
+
+.modal-confirm-btn {
+  background-color: #22c55e; /* Verde correspondente ao botão de disponível */
+  color: #ffffff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.modal-confirm-btn:hover {
+  background-color: #16a34a;
 }

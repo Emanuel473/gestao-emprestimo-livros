@@ -8,17 +8,9 @@ function BookCard({
   botao,
   onAcaoClick,
   nomeEmprestimo,
-  idUsuarioEmprestimo, // NOVA PROP
-  idUsuarioLogado, // NOVA PROP
 }) {
   // Trata o nome para exibir apenas o primeiro nome se ele existir
-  const primeiroNome = nomeEmprestimo
-    ? nomeEmprestimo.split(" ")[0]
-    : "Usuário";
-
-  // Descobre se o livro foi emprestado especificamente para VOCÊ
-  const ehMeuEmprestimo =
-    status === "emprestado" && idUsuarioEmprestimo === idUsuarioLogado;
+  const primeiroNome = nomeEmprestimo ? nomeEmprestimo : "Usuário";
 
   return (
     <div className="book-card">
@@ -36,8 +28,8 @@ function BookCard({
         {status === "disponivel" ? "Disponível" : "Indisponível"}
       </p>
 
-      {/* Só mostra para quem está emprestado se o livro for de OUTRA pessoa */}
-      {status === "emprestado" && !ehMeuEmprestimo && (
+      {/* SEMPRE mostra para quem está emprestado se o status for indisponível */}
+      {status === "emprestado" && (
         <p
           className="borrowed-by"
           style={{
@@ -52,15 +44,13 @@ function BookCard({
         </p>
       )}
 
-      {/* Só renderiza o botão se o livro estiver disponível OU se for seu para devolver */}
-      {(status === "disponivel" || ehMeuEmprestimo) && (
-        <button
-          className={botao === "Devolver" ? "return-button" : "borrow-button"}
-          onClick={onAcaoClick}
-        >
-          {botao}
-        </button>
-      )}
+      {/* Sempre renderiza o botão correspondente (Emprestar ou Devolver) */}
+      <button
+        className={botao === "Devolver" ? "return-button" : "borrow-button"}
+        onClick={onAcaoClick}
+      >
+        {botao}
+      </button>
     </div>
   );
 }

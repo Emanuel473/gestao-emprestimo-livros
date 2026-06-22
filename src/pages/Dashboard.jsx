@@ -6,19 +6,17 @@ import BookCard from "../components/BookCard";
 import "../styles/Dashboard.css";
 
 function Dashboard() {
-  // Estado para armazenar os livros vindos da API
   const [livros, setLivros] = useState([]);
-  // Estado para controlar o carregamento
   const [carregando, setCarregando] = useState(true);
   const [pesquisa, setPesquisa] = useState("");
 
+  // Estados para controlar o Modal de Empréstimo Customizado
+  const [modalAberto, setModalAberto] = useState(false);
+  const [livroSelecionado, setLivroSelecionado] = useState(null);
+  const [nomeCompletoInput, setNomeCompletoInput] = useState("");
+
   const API_URL = "https://api-emprestimo-livros.onrender.com";
 
-  // Pega o ID do usuário que está logado no navegador para passar para os cards
-  const usuarioLogado = localStorage.getItem("usuario");
-  const idUsuarioLogado = usuarioLogado ? JSON.parse(usuarioLogado).id : null;
-
-  // Função isolada para buscar livros
   async function buscarLivros() {
     try {
       setCarregando(true);
@@ -27,39 +25,51 @@ function Dashboard() {
         throw new Error("Erro ao buscar os livros da API");
       }
       const dados = await resposta.json();
-      setLivros(dados); // Salva os livros no estado
+      setLivros(dados);
     } catch (erro) {
       console.error("Erro na requisição:", erro);
     } finally {
-      setCarregando(false); // Desativa o indicador de carregando
+      setCarregando(false);
     }
   }
 
   useEffect(() => {
     buscarLivros();
-  }, []); // Executa apenas ao carregar o componente
+  }, []);
 
-  // FUNÇÃO: Faz a requisição PUT para pegar emprestado
-  const handleEmprestar = async (livro) => {
-    if (!idUsuarioLogado) {
-      alert("Sessão inválida ou expirada. Por favor, refaça o login.");
+  // Abre o modal customizado salvando qual livro foi clicado
+  const abrirModalEmprestimo = (livro) => {
+    setLivroSelecionado(livro);
+    setNomeCompletoInput("");
+    setModalAberto(true);
+  };
+
+  // FUNÇÃO: Efetiva o empréstimo usando o nome digitado no Modal
+  const confirmarEmprestimoCustomizado = async (e) => {
+    e.preventDefault();
+
+    if (!nomeCompletoInput.trim()) {
+      alert("Por favor, insira seu nome completo.");
       return;
     }
 
-    // Caixinha de confirmação antes de efetivar
-    const confirmar = window.confirm(
-      `Você tem certeza que deseja pegar o livro "${livro.titulo}" emprestado?`,
-    );
-    if (!confirmar) return;
-
     try {
-      const resposta = await fetch(`${API_URL}/livros/${livro.id}/emprestar`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
+      // Como o registro passa a ser por nome digitado na caixa, enviamos o texto para o back-end.
+      // Dica: Seu back-end precisará aceitar esse nome para vincular ou buscar o id correspondente,
+      // ou se sua rota espera um ID fixo, mandamos uma simulação (aqui mandamos o payload no padrão)
+      const resposta = await fetch(
+        `${API_URL}/livros/${livroSelecionado.id}/emprestar`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            usuario_id: 1, // Mantém ID padrão de fallback para conformidade do banco antigo
+            nome_completo: nomeCompletoInput, // Nome digitado na caixinha estilizada
+          }),
         },
-        body: JSON.stringify({ usuario_id: idUsuarioLogado }),
-      });
+      );
 
       const dados = await resposta.json();
 
@@ -67,32 +77,15 @@ function Dashboard() {
         throw new Error(dados.error || "Erro ao realizar empréstimo.");
       }
 
-      // Atualiza a lista e os contadores na tela dinamicamente
+      setModalAberto(false);
       buscarLivros();
     } catch (err) {
       alert(err.message);
     }
   };
 
-  // FUNÇÃO: Faz a requisição PUT para devolver o livro
+  // FUNÇÃO: Qualquer pessoa agora pode devolver
   const handleDevolver = async (livro) => {
-    if (!idUsuarioLogado) {
-      alert("Sessão inválida ou expirada. Por favor, refaça o login.");
-      return;
-    }
-
-    // TRAVA: Verifica se quem está logado é o mesmo que pegou o livro
-    if (
-      livro.usuario_emprestimo &&
-      livro.usuario_emprestimo !== idUsuarioLogado
-    ) {
-      alert(
-        "Apenas o usuário que pegou este livro emprestado pode realizar a devolução.",
-      );
-      return;
-    }
-
-    // Caixinha de confirmação antes de efetivar
     const confirmar = window.confirm(
       `Você tem certeza que deseja devolver o livro "${livro.titulo}"?`,
     );
@@ -104,7 +97,7 @@ function Dashboard() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ usuario_id: idUsuarioLogado }),
+        body: JSON.stringify({ usuario_id: 1 }), // Envio genérico já que a trava caiu
       });
 
       const dados = await resposta.json();
@@ -113,14 +106,12 @@ function Dashboard() {
         throw new Error(dados.error || "Erro ao realizar devolução.");
       }
 
-      // Atualiza a lista e os contadores na tela dinamicamente
       buscarLivros();
     } catch (err) {
       alert(err.message);
     }
   };
 
-  // Funções para calcular os valores dos cards dinamicamente baseados no banco
   const totalLivros = livros.length;
   const disponiveis = livros.filter((l) => l.status === "disponivel").length;
   const emprestados = livros.filter((l) => l.status === "emprestado").length;
@@ -157,13 +148,9 @@ function Dashboard() {
                 status={livro.status}
                 botao={livro.status === "disponivel" ? "Emprestar" : "Devolver"}
                 nomeEmprestimo={livro.nome_emprestimo}
-                idUsuarioEmprestimo={
-                  livro.usuario_emprestimo
-                } /* Mapeia ID do banco */
-                idUsuarioLogado={idUsuarioLogado} /* Mapeia ID da sessão */
                 onAcaoClick={
                   livro.status === "disponivel"
-                    ? () => handleEmprestar(livro)
+                    ? () => abrirModalEmprestimo(livro)
                     : () => handleDevolver(livro)
                 }
               />
@@ -177,6 +164,43 @@ function Dashboard() {
           </div>
         )}
       </main>
+
+      {/* MODAL CUSTOMIZADO E ESTILIZADO DE EMPRÉSTIMO */}
+      {modalAberto && (
+        <div className="modal-overlay">
+          <div className="modal-card">
+            <h3>Confirmar Empréstimo</h3>
+            <p className="modal-subtitle">
+              Você está pegando: <strong>{livroSelecionado?.titulo}</strong>
+            </p>
+
+            <form onSubmit={confirmarEmprestimoCustomizado}>
+              <label>Digite seu nome completo:</label>
+              <input
+                className="modal-input"
+                type="text"
+                required
+                value={nomeCompletoInput}
+                onChange={(e) => setNomeCompletoInput(e.target.value)}
+                placeholder="Nome completo"
+              />
+
+              <div className="modal-actions">
+                <button
+                  type="button"
+                  className="modal-cancel-btn"
+                  onClick={() => setModalAberto(false)}
+                >
+                  Cancelar
+                </button>
+                <button type="submit" className="modal-confirm-btn">
+                  Confirmar Empréstimo
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

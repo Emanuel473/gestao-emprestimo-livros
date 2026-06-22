@@ -1,8 +1,17 @@
 import React from "react";
 import "../styles/DetalhesLivro.css";
-import capaLivro from "../assets/1984.jpg"
+import capaLivro from "../assets/1984.jpg";
 import logo from "../assets/logo.jpeg";
-import { LayoutDashboard, Library, User, BookText, Settings, ArrowLeft, BookOpenCheck, Undo2 } from "lucide-react";
+import {
+  LayoutDashboard,
+  Library,
+  User,
+  BookText,
+  Settings,
+  ArrowLeft,
+  BookOpenCheck,
+  Undo2,
+} from "lucide-react";
 
 const navItems = [
   { label: "Dashboard", icon: LayoutDashboard, active: false },
@@ -39,8 +48,8 @@ export default function DetalhesLivro() {
       {/* Main content */}
       <main className="main">
         <button className="back-link">
-  <ArrowLeft size={16} /> Voltar para livros
-</button>
+          <ArrowLeft size={16} /> Voltar para livros
+        </button>
 
         <div className="content-grid">
           {/* Capa do livro */}
@@ -91,13 +100,13 @@ export default function DetalhesLivro() {
                 completamente dominada pelo Estado, onde tudo é feito
                 coletivamente, mas cada qual vive sozinho. Ninguém escapa à
                 vigilância do Grande Irmão, a mais famosa personificação
-                literária de um poder cínico e cruel ao infinito, além de
-                vazio de sentido histórico. De fato, a ideologia do Partido
-                dominante em Oceânia não visa nada de coisa alguma para
-                ninguém, no presente ou no futuro. O'Brien, hierarca do
-                Partido, é quem explica a Winston que "só nos interessa o
-                poder em si. Nem riqueza, nem luxo, nem vida longa, nem
-                felicidade: só o poder pelo poder, poder puro".
+                literária de um poder cínico e cruel ao infinito, além de vazio
+                de sentido histórico. De fato, a ideologia do Partido dominante
+                em Oceânia não visa nada de coisa alguma para ninguém, no
+                presente ou no futuro. O'Brien, hierarca do Partido, é quem
+                explica a Winston que "só nos interessa o poder em si. Nem
+                riqueza, nem luxo, nem vida longa, nem felicidade: só o poder
+                pelo poder, poder puro".
               </p>
             </section>
 
