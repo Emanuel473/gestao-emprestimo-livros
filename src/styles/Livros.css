@@ -10,15 +10,19 @@
 }
 
 .livros-title {
-  width: 1300px;
+  width: 100%;
+  max-width: 1300px;
 
   margin: 10px auto;
+  padding: 0 20px;
 
   color: white;
 
   font-size: 28px;
   font-family: Inter, sans-serif;
   font-weight: 400;
+
+  box-sizing: border-box;
 }
 
 .livros-list {
@@ -26,11 +30,14 @@
   flex-direction: column;
   gap: 20px;
 
-  width: 1000px;
+  width: 100%;
+  max-width: 1000px;
 
-  margin: 0 auto;
+  margin: 20px auto 0 auto;
 
-  margin-top: 20px;
+  padding: 0 20px;
+
+  box-sizing: border-box;
 }
 
 .back-button {
@@ -149,4 +156,20 @@
 
 .modal-confirm-btn:hover {
   background-color: #16a34a;
+}
+
+@media (max-width: 768px) {
+
+  .livros-title {
+    font-size: 24px;
+  }
+
+  .livros-list {
+    padding: 0 15px;
+  }
+
+  .modal-card {
+    margin: 15px;
+  }
+
 }

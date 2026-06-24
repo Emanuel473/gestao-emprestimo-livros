@@ -82,3 +82,28 @@
   background-color: #1e293b;
   color: white;
 }
+
+@media (max-width: 768px) {
+
+  .sidebar {
+    width: 80px;
+  }
+
+  .sidebar-logo h2 {
+    display: none;
+  }
+
+  .sidebar-menu a {
+    justify-content: center;
+    padding: 14px;
+  }
+
+  .sidebar-menu a span {
+    display: none;
+  }
+
+  .logo-image {
+    width: 60px;
+    height: 60px;
+  }
+}

@@ -92,3 +92,56 @@
 
   cursor: pointer;
 }
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 1024px) {
+
+  .book-list-item {
+    width: 100%;
+    height: auto;
+    min-height: 110px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .book-list-item {
+    width: 100%;
+
+    height: auto;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+    gap: 15px;
+
+    padding: 20px;
+  }
+
+  .book-list-cover {
+    width: 80px;
+    height: 110px;
+  }
+
+  .book-list-info {
+    margin-left: 0;
+  }
+
+  .book-list-info h3 {
+    font-size: 22px;
+  }
+
+  .btn-emprestar,
+  .btn-devolver {
+    width: 180px;
+    height: 42px;
+  }
+
+}

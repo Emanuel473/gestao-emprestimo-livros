@@ -6,6 +6,7 @@ import Livros from "./pages/Livros";
 import Emprestimos from "./pages/Emprestimos";
 import Configuracoes from "./pages/Configuracoes";
 import Usuarios from "./pages/Usuarios";
+import DetalhesLivro from "./pages/DetalhesLivro";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path="/emprestimos" element={<Emprestimos />} />
       <Route path="/configuracoes" element={<Configuracoes />} />
       <Route path="/usuarios" element={<Usuarios />} />
+      <Route path="/livros/:id" element={<DetalhesLivro />} />
     </Routes>
   );
 }

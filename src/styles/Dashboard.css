@@ -24,6 +24,8 @@
 .recent-title {
   margin-left: 35px;
   margin-top: 40px;
+  padding: 0 20px;
+  
 
   font-family: "Inter", sans-serif;
   font-size: 24px;
@@ -37,10 +39,11 @@
   margin-top: 20px;
   margin-bottom: 35px; /* Adicionado para dar respiro na base da página */
 
-  width: calc(100% - 70px);
+  margin: 20px 35px 35px 35px;
   /* Mudamos de min-height fixo para auto, permitindo que o bloco cresça 
      caso surjam novas fileiras de livros */
   height: auto;
+  width: auto;
 
   background-color: #1e293b;
   border-radius: 20px;
@@ -159,4 +162,28 @@
 
 .modal-confirm-btn:hover {
   background-color: #16a34a;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 35px;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+
+  .stats-container {
+    flex-direction: column;
+  }
+
+  .recent-books-container {
+    justify-content: center;
+  }
+
+  .recent-title {
+    text-align: center;
+    margin-left: 0;
+  }
 }
