@@ -127,7 +127,6 @@ export default function DetalhesLivro() {
       {/* Sidebar */}
       <Sidebar />
 
-      {/* Main content */}
       <main className="main">
         {/* Evento de clique configurado para usar o histórico do React Router */}
         <button className="back-link" onClick={() => navigate(-1)}>

@@ -20,6 +20,11 @@ body,
 }
 
 
+
+.nav-icon {
+  flex-shrink: 0;
+}
+
 /* ============ Main content ============ */
 .main {
   flex: 1;
@@ -51,7 +56,7 @@ body,
   align-items: start;
 }
 
-/* ============ Capa do livro ============ */
+
 .cover-wrapper {
   border-radius: 8px;
   overflow: hidden;
@@ -65,7 +70,7 @@ body,
   display: block;
 }
 
-/* ============ Informações do livro ============ */
+
 .book-info {
   display: flex;
   flex-direction: column;
@@ -207,7 +212,7 @@ body,
   background: rgba(226, 59, 59, 0.1);
 }
 
-/* ============ Informações adicionais ============ */
+
 .additional-info {
   margin-top: 40px;
   padding: 24px 28px;

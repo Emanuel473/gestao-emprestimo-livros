@@ -1,0 +1,140 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  font-family: "Segoe UI", "Inter", system-ui, sans-serif;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+  background: #020617;
+  color: #e6e8ef;
+}
+
+/* ============ Main content ============ */
+.main {
+  flex: 1;
+  padding: 28px 40px 48px;
+  overflow-y: auto;
+}
+
+
+/* ============ Título da página ============ */
+.page-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.page-title h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  color: #f5f6fa;
+}
+
+.back-arrow {
+  color: #c8cbdb;
+  cursor: pointer;
+}
+
+/* ============ Card de configurações ============ */
+.settings-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.settings-card {
+  width: 100%;
+  max-width: 480px;
+  background: #11162a;
+  border: 1px solid #3b9eff;
+  border-radius: 14px;
+  padding: 28px 32px;
+  box-shadow: 0 0 0 1px rgba(59, 158, 255, 0.15), 0 10px 30px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-title {
+  font-size: 19px;
+  font-weight: 700;
+  margin: 0 0 24px;
+  color: #f5f6fa;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.field-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f5f6fa;
+}
+
+.field-group input {
+  background: #283047;
+  border: 1px solid #38415c;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 14px;
+  color: #e6e8ef;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.field-group input:focus {
+  border-color: #3b9eff;
+}
+
+.field-group input::placeholder {
+  color: #8a90a8;
+  letter-spacing: 2px;
+}
+
+.save-btn {
+  align-self: center;
+  margin-top: 12px;
+  background: #2563eb;
+  border: 1px solid #2563eb;
+  color: #ffffff;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.save-btn:hover {
+  background: #1d4fd1;
+}
+
+/* ============ Responsivo ============ */
+@media (max-width: 700px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .main {
+    padding: 20px;
+  }
+
+  .settings-card {
+    max-width: 100%;
+    padding: 24px;
+  }
+}

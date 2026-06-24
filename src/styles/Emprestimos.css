@@ -1,0 +1,138 @@
+/* ============ Reset / base ============ */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+  background: #020617;
+  color: #e6e8ef;
+}
+
+/* ============ Main content ============ */
+.main {
+  flex: 1;
+  padding: 28px 40px 48px;
+  overflow-y: auto;
+}
+
+
+/* ============ Título da página ============ */
+.page-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.page-title h1 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  color: #f5f6fa;
+}
+
+.back-arrow {
+  color: #c8cbdb;
+  cursor: pointer;
+}
+
+/* ============ Tabela ============ */
+.table-wrapper {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.loans-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+.loans-table thead th {
+  background: #161d36;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 700;
+  color: #f5f6fa;
+  padding: 14px 20px;
+}
+
+.loans-table thead th:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.loans-table thead th:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.loans-table tbody tr {
+  background: #11162a;
+}
+
+.loans-table tbody td {
+  padding: 16px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #e6e8ef;
+}
+
+.loans-table tbody td:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.loans-table tbody td:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.status {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.status--progress {
+  color: #4ade80;
+}
+
+.status--returned {
+  color: #5b8def;
+}
+
+.status--late {
+  color: #f06868;
+}
+
+/* ============ Responsivo ============ */
+@media (max-width: 900px) {
+  .loans-table {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 700px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .main {
+    padding: 20px;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+}
