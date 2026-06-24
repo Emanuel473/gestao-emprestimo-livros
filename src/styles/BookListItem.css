@@ -2,7 +2,7 @@
   width: 900px;
   height: 110px;
 
-  background-color: #1E293B;
+  background-color: #1e293b;
 
   border-radius: 12px;
 
@@ -12,6 +12,7 @@
   padding: 20px;
 
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .book-list-cover {
@@ -41,13 +42,13 @@
 .book-list-info p {
   margin-top: 5px;
 
-  color: #D1D5DB;
+  color: #d1d5db;
 
   font-size: 14px;
 }
 
 .status-disponivel {
-  color: #22C55E;
+  color: #22c55e;
 
   font-size: 14px;
 
@@ -55,7 +56,7 @@
 }
 
 .status-emprestado {
-  color: #EF4444;
+  color: #ef4444;
 
   font-size: 14px;
 
@@ -66,7 +67,7 @@
   width: 120px;
   height: 40px;
 
-  background-color: #2563EB;
+  background-color: #2563eb;
 
   color: white;
 
@@ -81,7 +82,7 @@
   width: 120px;
   height: 40px;
 
-  background-color: #EF4444;
+  background-color: #ef4444;
 
   color: white;
 

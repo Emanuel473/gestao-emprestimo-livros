@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom"; // Importa o hook de navegação
 import "../styles/BookCard.css";
 
 function BookCard({
+  id, // Recebe o ID para permitir o redirecionamento
   capa,
   titulo,
   autor,
@@ -8,20 +10,16 @@ function BookCard({
   botao,
   onAcaoClick,
   nomeEmprestimo,
-  idUsuarioEmprestimo, // NOVA PROP
-  idUsuarioLogado, // NOVA PROP
 }) {
-  // Trata o nome para exibir apenas o primeiro nome se ele existir
-  const primeiroNome = nomeEmprestimo
-    ? nomeEmprestimo.split(" ")[0]
-    : "Usuário";
+  const navigate = useNavigate();
 
-  // Descobre se o livro foi emprestado especificamente para VOCÊ
-  const ehMeuEmprestimo =
-    status === "emprestado" && idUsuarioEmprestimo === idUsuarioLogado;
+  const handleIrParaDetalhes = () => {
+    navigate(`/livros/${id}`);
+  };
 
   return (
-    <div className="book-card">
+    /* O CARD INTEIRO AGORA REDIRECIONA PARA OS DETALHES AO CLICAR */
+    <div className="book-card" onClick={handleIrParaDetalhes}>
       <img src={capa} alt={titulo} className="book-cover" />
 
       <h3>{titulo}</h3>
@@ -36,31 +34,26 @@ function BookCard({
         {status === "disponivel" ? "Disponível" : "Indisponível"}
       </p>
 
-      {/* Só mostra para quem está emprestado se o livro for de OUTRA pessoa */}
-      {status === "emprestado" && !ehMeuEmprestimo && (
-        <p
-          className="borrowed-by"
-          style={{
-            color: "#8da2bb",
-            fontSize: "0.85rem",
-            marginBottom: "12px",
-            fontStyle: "italic",
-          }}
-        >
-          Emprestado para:{" "}
-          <strong style={{ color: "#ffffff" }}>{primeiroNome}</strong>
+      {/* SEMPRE mostra para quem está emprestado se o status for indisponível */}
+      {status === "emprestado" && (
+        <p className="borrowed-by">
+          Emprestado para: <br />
+          <strong style={{ color: "#ffffff" }}>
+            {nomeEmprestimo || "Usuário"}
+          </strong>
         </p>
       )}
 
-      {/* Só renderiza o botão se o livro estiver disponível OU se for seu para devolver */}
-      {(status === "disponivel" || ehMeuEmprestimo) && (
-        <button
-          className={botao === "Devolver" ? "return-button" : "borrow-button"}
-          onClick={onAcaoClick}
-        >
-          {botao}
-        </button>
-      )}
+      {/* Botão com tratamento de propagação para não abrir os detalhes */}
+      <button
+        className={botao === "Devolver" ? "return-button" : "borrow-button"}
+        onClick={(e) => {
+          e.stopPropagation(); // Impede que o clique abra a tela de detalhes
+          onAcaoClick();
+        }}
+      >
+        {botao}
+      </button>
     </div>
   );
 }
