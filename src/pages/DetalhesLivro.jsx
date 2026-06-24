@@ -1,28 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import Sidebar from "../components/Sidebar";
 import "../styles/DetalhesLivro.css";
 import logo from "../assets/logo.jpeg";
-import {
-  LayoutDashboard,
-  Library,
-  User,
-  BookText,
-  Settings,
-  ArrowLeft,
-} from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
-const navItems = [
-  {
-    label: "Dashboard",
-    icon: LayoutDashboard,
-    active: false,
-    path: "/dashboard",
-  },
-  { label: "Livros", icon: Library, active: true, path: "/livros" },
-  { label: "Usuários", icon: User, active: false, path: "#" },
-  { label: "Empréstimos", icon: BookText, active: false, path: "#" },
-  { label: "Configurações", icon: Settings, active: false, path: "#" },
-];
+
 
 export default function DetalhesLivro() {
   const { id } = useParams(); // Captura dinamicamente o ID do livro pela URL da rota
@@ -142,25 +125,7 @@ export default function DetalhesLivro() {
   return (
     <div className="app">
       {/* Sidebar */}
-      <aside className="sidebar">
-        <div className="brand">
-          <img className="brand-logo" src={logo} alt="Logo Prometheus" />
-          <span className="brand-name">PROMETHEUS</span>
-        </div>
-
-        <nav className="nav">
-          {navItems.map((item) => (
-            <Link
-              to={item.path}
-              key={item.label}
-              className={`nav-item ${item.active ? "nav-item--active" : ""}`}
-            >
-              <item.icon className="nav-icon" size={18} />
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-      </aside>
+      <Sidebar />
 
       {/* Main content */}
       <main className="main">

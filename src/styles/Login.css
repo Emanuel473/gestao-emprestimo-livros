@@ -151,3 +151,24 @@
 .toggle-mode-container span:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 768px) {
+
+  .login-container h1 {
+    font-size: 2rem;
+  }
+
+  .login-container p {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .login-card {
+    padding: 25px;
+  }
+
+  .login-title {
+    font-size: 1.5rem;
+  }
+
+}
