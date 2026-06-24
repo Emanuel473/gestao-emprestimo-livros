@@ -1,0 +1,246 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  font-family: "Segoe UI", "Inter", system-ui, sans-serif;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+  background: #0b0f1a;
+  color: #e6e8ef;
+}
+
+/* ============ Sidebar ============ */
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: #11162a;
+  border-right: 1px solid #1f2540;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px;
+}
+
+.brand-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  color: #f1f2f6;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #aab0c5;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.nav-item:hover {
+  background: #1a2038;
+  color: #e6e8ef;
+}
+
+.nav-item--active {
+  background: #1d2c4d;
+  color: #6fa8ff;
+  font-weight: 600;
+}
+
+.nav-icon {
+  flex-shrink: 0;
+}
+
+/* ============ Main content ============ */
+.main {
+  flex: 1;
+  padding: 28px 40px 48px;
+  overflow-y: auto;
+}
+
+/* ============ Barra de pesquisa ============ */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #11162a;
+  border: 1px solid #1f2540;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 24px;
+}
+
+.search-icon {
+  color: #6fa8ff;
+  flex-shrink: 0;
+}
+
+.search-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e6e8ef;
+  font-size: 14px;
+  width: 100%;
+}
+
+.search-input::placeholder {
+  color: #7b8199;
+}
+
+/* ============ Título da página ============ */
+.page-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.page-title h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  color: #f5f6fa;
+}
+
+.back-arrow {
+  color: #c8cbdb;
+  cursor: pointer;
+}
+
+/* ============ Card de configurações ============ */
+.settings-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.settings-card {
+  width: 100%;
+  max-width: 480px;
+  background: #11162a;
+  border: 1px solid #3b9eff;
+  border-radius: 14px;
+  padding: 28px 32px;
+  box-shadow: 0 0 0 1px rgba(59, 158, 255, 0.15), 0 10px 30px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-title {
+  font-size: 19px;
+  font-weight: 700;
+  margin: 0 0 24px;
+  color: #f5f6fa;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.field-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f5f6fa;
+}
+
+.field-group input {
+  background: #283047;
+  border: 1px solid #38415c;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 14px;
+  color: #e6e8ef;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.field-group input:focus {
+  border-color: #3b9eff;
+}
+
+.field-group input::placeholder {
+  color: #8a90a8;
+  letter-spacing: 2px;
+}
+
+.save-btn {
+  align-self: center;
+  margin-top: 12px;
+  background: #2563eb;
+  border: 1px solid #2563eb;
+  color: #ffffff;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.save-btn:hover {
+  background: #1d4fd1;
+}
+
+/* ============ Responsivo ============ */
+@media (max-width: 700px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+    align-items: center;
+  }
+
+  .nav {
+    flex-direction: row;
+  }
+
+  .main {
+    padding: 20px;
+  }
+
+  .settings-card {
+    max-width: 100%;
+    padding: 24px;
+  }
+}
