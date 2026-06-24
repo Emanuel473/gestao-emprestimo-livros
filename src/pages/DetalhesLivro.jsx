@@ -36,14 +36,14 @@ export default function DetalhesLivro() {
         </nav>
       </aside>
 
-      {/* Main content */}
+      
       <main className="main">
         <button className="back-link">
   <ArrowLeft size={16} /> Voltar para livros
 </button>
 
         <div className="content-grid">
-          {/* Capa do livro */}
+          
           <div className="cover-wrapper">
             <img
               className="book-cover"
@@ -52,7 +52,7 @@ export default function DetalhesLivro() {
             />
           </div>
 
-          {/* Informações do livro */}
+          
           <div className="book-info">
             <span className="badge-available">
               <span className="badge-dot" />
@@ -112,7 +112,7 @@ export default function DetalhesLivro() {
           </div>
         </div>
 
-        {/* Informações adicionais */}
+        
         <section className="additional-info">
           <h3>Informações adicionais</h3>
           <div className="info-grid">
