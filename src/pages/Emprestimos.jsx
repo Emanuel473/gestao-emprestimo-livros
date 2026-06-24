@@ -1,23 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/Emprestimos.css";
-import logo from "../assets/logo.jpeg";
-import {
-  LayoutDashboard,
-  Library,
-  User,
-  BookText,
-  Settings,
-  ArrowLeft,
-  Search,
-} from "lucide-react";
-
-const navItems = [
-  { label: "Dashboard", icon: LayoutDashboard, active: false },
-  { label: "Livros", icon: Library, active: false },
-  { label: "Usuários", icon: User, active: false },
-  { label: "Empréstimos", icon: BookText, active: true },
-  { label: "Configurações", icon: Settings, active: false },
-];
+import Sidebar from "../components/Sidebar";
+import Header from "../components/Header";
+import { ArrowLeft } from "lucide-react";
 
 const loans = [
   {
@@ -47,39 +32,14 @@ const loans = [
 ];
 
 export default function Emprestimos() {
+  const [pesquisa, setPesquisa] = useState("");
+
   return (
     <div className="app">
-      {/* Sidebar */}
-      <aside className="sidebar">
-        <div className="brand">
-          <img className="brand-logo" src={logo} alt="Logo" />
-          <span className="brand-name">PROMETHEUS</span>
-        </div>
+      <Sidebar />
 
-        <nav className="nav">
-          {navItems.map((item) => (
-            <a
-              href="#"
-              key={item.label}
-              className={`nav-item ${item.active ? "nav-item--active" : ""}`}
-            >
-              <item.icon className="nav-icon" size={18} />
-              {item.label}
-            </a>
-          ))}
-        </nav>
-      </aside>
-
-      {/* Main content */}
       <main className="main">
-        <div className="search-bar">
-          <Search className="search-icon" size={18} />
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Pesquisar livros..."
-          />
-        </div>
+        <Header pesquisa={pesquisa} setPesquisa={setPesquisa} />
 
         <div className="page-title">
           <ArrowLeft size={18} className="back-arrow" />

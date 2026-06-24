@@ -1,69 +1,26 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import "../styles/Configuracoes.css";
-import logo from "../assets/logo.jpeg";
-import {
-  LayoutDashboard,
-  Library,
-  User,
-  BookText,
-  Settings,
-  ArrowLeft,
-  Search,
-} from "lucide-react";
-
-const navItems = [
-  { label: "Dashboard", icon: LayoutDashboard, active: false, path: "/dashboard" },
-  { label: "Livros", icon: Library, active: false, path: "/livros" },
-  { label: "Usuários", icon: User, active: false, path: "#" },
-  { label: "Empréstimos", icon: BookText, active: false, path: "#" },
-  { label: "Configurações", icon: Settings, active: true, path: "/configuracoes" },
-];
+import Sidebar from "../components/Sidebar";
+import Header from "../components/Header";
+import { ArrowLeft } from "lucide-react";
 
 export default function Configuracoes() {
+  const [pesquisa, setPesquisa] = useState("");
   const [nome, setNome] = useState("Administrador");
   const [email, setEmail] = useState("admin@prometheus.com");
   const [novaSenha, setNovaSenha] = useState("");
 
   const handleSalvar = (e) => {
     e.preventDefault();
-    // TODO: conectar com a API real para salvar as alterações
     console.log({ nome, email, novaSenha });
   };
 
   return (
     <div className="app">
-      {/* Sidebar */}
-      <aside className="sidebar">
-        <div className="brand">
-          <img className="brand-logo" src={logo} alt="Logo Prometheus" />
-          <span className="brand-name">PROMETHEUS</span>
-        </div>
+      <Sidebar />
 
-        <nav className="nav">
-          {navItems.map((item) => (
-            <Link
-              to={item.path}
-              key={item.label}
-              className={`nav-item ${item.active ? "nav-item--active" : ""}`}
-            >
-              <item.icon className="nav-icon" size={18} />
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-      </aside>
-
-      {/* Main content */}
       <main className="main">
-        <div className="search-bar">
-          <Search className="search-icon" size={18} />
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Pesquisar livros..."
-          />
-        </div>
+        <Header pesquisa={pesquisa} setPesquisa={setPesquisa} />
 
         <div className="page-title">
           <ArrowLeft size={18} className="back-arrow" />
