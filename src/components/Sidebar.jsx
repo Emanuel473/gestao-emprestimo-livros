@@ -1,5 +1,6 @@
 import "../styles/Sidebar.css";
 import logo from "../assets/logo.jpeg";
+import { Link } from "react-router-dom";
 
 import {
   MdDashboard,
@@ -8,8 +9,6 @@ import {
   MdSwapHoriz,
   MdSettings
 } from "react-icons/md";
-
-import { Link } from "react-router-dom";
 
 function Sidebar() {
   return (
@@ -20,7 +19,6 @@ function Sidebar() {
           alt="Logo Prometheus"
           className="logo-image"
         />
-
         <h2>PROMETHEUS</h2>
       </div>
 
@@ -35,20 +33,20 @@ function Sidebar() {
           Livros
         </Link>
 
-        <a href="#">
+        <Link to="/usuarios">
           <MdPeople />
           Usuários
-        </a>
+        </Link>
 
-        <a href="#">
+        <Link to="/emprestimos">
           <MdSwapHoriz />
           Empréstimos
-        </a>
+        </Link>
 
-        <a href="#">
+        <Link to="/configuracoes">
           <MdSettings />
           Configurações
-        </a>
+        </Link>
       </nav>
     </aside>
   );
